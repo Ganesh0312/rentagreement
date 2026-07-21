@@ -16,7 +16,10 @@ declare module "next-auth" {
     user: SessionUser;
   }
 
-  interface User extends SessionUser {}
+  interface User {
+    id: string;
+    role: Role;
+  }
 }
 
 declare module "@auth/core/jwt" {

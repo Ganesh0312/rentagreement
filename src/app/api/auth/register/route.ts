@@ -1,4 +1,3 @@
-import { auth } from "@/lib/auth/auth";
 import { registerSchema } from "@/lib/validators/auth.schema";
 import { apiSuccess, handleApiError } from "@/lib/errors/error-handler";
 import { registerUser } from "@/services/auth/auth.service";

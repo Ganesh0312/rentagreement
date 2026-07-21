@@ -37,7 +37,7 @@ export default function AuthLayout({
         <div className="relative space-y-6">
           <div>
             <h2 className="text-3xl font-extrabold leading-tight">
-              India's most trusted <br />rent agreement platform
+              India&apos;s most trusted <br />rent agreement platform
             </h2>
             <p className="mt-3 text-primary-foreground/75 leading-relaxed">
               Join thousands of landlords and tenants who register their agreements the smart way — 100% online, fully legal.
@@ -57,7 +57,7 @@ export default function AuthLayout({
         {/* Bottom quote */}
         <div className="relative rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
           <p className="text-sm italic text-primary-foreground/80">
-            "The fastest and simplest way to register our rent agreement. Highly recommended!"
+            &quot;The fastest and simplest way to register our rent agreement. Highly recommended!&quot;
           </p>
           <p className="mt-2 text-xs font-medium text-primary-foreground/60">— Rahul M., Mumbai</p>
         </div>

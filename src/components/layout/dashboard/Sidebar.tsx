@@ -1,7 +1,37 @@
 import Link from "next/link";
-import { Home } from "lucide-react";
+import {
+  Home,
+  LayoutDashboard,
+  FileText,
+  CreditCard,
+  Bell,
+  User,
+  Users,
+  DollarSign,
+  GitBranch,
+  Settings,
+  BarChart3,
+  BookTemplate,
+  ShieldCheck,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/config/dashboard-nav.config";
+
+const ICON_MAP: Record<string, React.ElementType> = {
+  overview: LayoutDashboard,
+  agreements: FileText,
+  payments: CreditCard,
+  notifications: Bell,
+  profile: User,
+  customers: Users,
+  commissions: DollarSign,
+  referrals: GitBranch,
+  users: Users,
+  agents: ShieldCheck,
+  templates: BookTemplate,
+  reports: BarChart3,
+  settings: Settings,
+};
 
 interface DashboardSidebarProps {
   items: NavItem[];
@@ -37,7 +67,7 @@ export function DashboardSidebar({
               pathname.startsWith(item.href) &&
               item.href !== `/${pathname.split("/")[1]}`);
 
-          const Icon = item.icon;
+          const Icon = (item.icon && ICON_MAP[item.icon]) || LayoutDashboard;
 
           return (
             <Link

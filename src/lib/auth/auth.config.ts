@@ -1,5 +1,5 @@
 import type { NextAuthConfig } from "next-auth";
-import { DASHBOARD_HOME } from "@/constants/roles";
+import { DASHBOARD_HOME, type Role } from "@/constants/roles";
 import {
   ADMIN_ROUTES_PREFIX,
   AGENT_ROUTES_PREFIX,
@@ -8,6 +8,7 @@ import {
 } from "@/constants/routes";
 
 export const authConfig = {
+  secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "development-secret-min-32-characters-long",
   pages: {
     signIn: "/login",
     error: "/error",
@@ -30,9 +31,10 @@ export const authConfig = {
         pathname.startsWith(ADMIN_ROUTES_PREFIX);
 
       if (isAuthRoute) {
-        if (isLoggedIn) {
-          const role = auth.user.role;
-          return Response.redirect(new URL(DASHBOARD_HOME[role], nextUrl));
+        if (isLoggedIn && auth?.user?.role) {
+          const role = auth.user.role as Role;
+          const target = DASHBOARD_HOME[role] ?? "/customer";
+          return Response.redirect(new URL(target, nextUrl));
         }
         return true;
       }
@@ -45,15 +47,17 @@ export const authConfig = {
     },
     jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        if (user.id) token.id = user.id;
         token.role = user.role;
       }
       return token;
     },
     session({ session, token }) {
       if (session.user) {
-        session.user.id = token.id as string;
-        session.user.role = token.role;
+        session.user.id = (token.id as string) ?? "";
+        if (token.role) {
+          session.user.role = token.role as Role;
+        }
       }
       return session;
     },

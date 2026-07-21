@@ -1,53 +1,38 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  LayoutDashboard,
-  FileText,
-  CreditCard,
-  Bell,
-  User,
-  Users,
-  DollarSign,
-  GitBranch,
-  Settings,
-  BarChart3,
-  BookTemplate,
-  ShieldCheck,
-} from "lucide-react";
 import type { Role } from "@/constants/roles";
 
 export interface NavItem {
   title: string;
   href: string;
-  icon: LucideIcon;
+  icon?: string;
   roles?: Role[];
 }
 
 export const customerNav: NavItem[] = [
-  { title: "Overview",      href: "/customer",               icon: LayoutDashboard },
-  { title: "Agreements",    href: "/customer/agreements",    icon: FileText },
-  { title: "Payments",      href: "/customer/payments",      icon: CreditCard },
-  { title: "Notifications", href: "/customer/notifications", icon: Bell },
-  { title: "Profile",       href: "/customer/profile",       icon: User },
+  { title: "Overview",      href: "/customer",               icon: "overview" },
+  { title: "Agreements",    href: "/customer/agreements",    icon: "agreements" },
+  { title: "Payments",      href: "/customer/payments",      icon: "payments" },
+  { title: "Notifications", href: "/customer/notifications", icon: "notifications" },
+  { title: "Profile",       href: "/customer/profile",       icon: "profile" },
 ];
 
 export const agentNav: NavItem[] = [
-  { title: "Overview",    href: "/agent",              icon: LayoutDashboard },
-  { title: "Customers",   href: "/agent/customers",    icon: Users },
-  { title: "Agreements",  href: "/agent/agreements",   icon: FileText },
-  { title: "Commissions", href: "/agent/commissions",  icon: DollarSign },
-  { title: "Referrals",   href: "/agent/referrals",    icon: GitBranch },
-  { title: "Profile",     href: "/agent/profile",      icon: User },
+  { title: "Overview",    href: "/agent",              icon: "overview" },
+  { title: "Customers",   href: "/agent/customers",    icon: "customers" },
+  { title: "Agreements",  href: "/agent/agreements",   icon: "agreements" },
+  { title: "Commissions", href: "/agent/commissions",  icon: "commissions" },
+  { title: "Referrals",   href: "/agent/referrals",    icon: "referrals" },
+  { title: "Profile",     href: "/agent/profile",      icon: "profile" },
 ];
 
 export const adminNav: NavItem[] = [
-  { title: "Overview",   href: "/admin",            icon: LayoutDashboard },
-  { title: "Agreements", href: "/admin/agreements", icon: FileText },
-  { title: "Users",      href: "/admin/users",      icon: Users },
-  { title: "Agents",     href: "/admin/agents",     icon: ShieldCheck },
-  { title: "Payments",   href: "/admin/payments",   icon: CreditCard },
-  { title: "Templates",  href: "/admin/templates",  icon: BookTemplate },
-  { title: "Reports",    href: "/admin/reports",    icon: BarChart3 },
-  { title: "Settings",   href: "/admin/settings",   icon: Settings },
+  { title: "Overview",   href: "/admin",            icon: "overview" },
+  { title: "Agreements", href: "/admin/agreements", icon: "agreements" },
+  { title: "Users",      href: "/admin/users",      icon: "users" },
+  { title: "Agents",     href: "/admin/agents",     icon: "agents" },
+  { title: "Payments",   href: "/admin/payments",   icon: "payments" },
+  { title: "Templates",  href: "/admin/templates",  icon: "templates" },
+  { title: "Reports",    href: "/admin/reports",    icon: "reports" },
+  { title: "Settings",   href: "/admin/settings",   icon: "settings" },
 ];
 
 export function getNavForRole(role: Role): NavItem[] {

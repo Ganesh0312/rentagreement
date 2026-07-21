@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -52,43 +53,40 @@ export function DashboardTopBar() {
 
         {/* User dropdown */}
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="relative h-9 w-9 rounded-full p-0 ring-2 ring-primary/30 hover:ring-primary/60 transition-all"
-            >
-              <Avatar className="h-9 w-9">
-                <AvatarFallback
-                  className={cn(
-                    "bg-gradient-to-br from-primary to-indigo-600 text-primary-foreground text-xs font-bold"
-                  )}
-                >
-                  {initials ?? "U"}
-                </AvatarFallback>
-              </Avatar>
-            </Button>
+          <DropdownMenuTrigger className="relative flex h-9 w-9 items-center justify-center rounded-full ring-2 ring-primary/30 hover:ring-primary/60 transition-all focus:outline-none cursor-pointer">
+            <Avatar className="h-9 w-9">
+              <AvatarFallback
+                className={cn(
+                  "bg-gradient-to-br from-primary to-indigo-600 text-primary-foreground text-xs font-bold"
+                )}
+              >
+                {initials ?? "U"}
+              </AvatarFallback>
+            </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-60">
-            <DropdownMenuLabel>
-              <div className="flex items-center gap-3">
-                <Avatar className="h-9 w-9">
-                  <AvatarFallback className="bg-gradient-to-br from-primary to-indigo-600 text-primary-foreground text-xs font-bold">
-                    {initials ?? "U"}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold">{user?.name}</span>
-                  <span className="text-xs font-normal text-muted-foreground">
-                    {user?.email}
-                  </span>
-                  {user?.role && (
-                    <span className="mt-0.5 inline-flex w-fit rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary">
-                      {ROLE_LABELS[user.role]}
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-9 w-9">
+                    <AvatarFallback className="bg-gradient-to-br from-primary to-indigo-600 text-primary-foreground text-xs font-bold">
+                      {initials ?? "U"}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold">{user?.name}</span>
+                    <span className="text-xs font-normal text-muted-foreground">
+                      {user?.email}
                     </span>
-                  )}
+                    {user?.role && (
+                      <span className="mt-0.5 inline-flex w-fit rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary">
+                        {ROLE_LABELS[user.role]}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </DropdownMenuLabel>
+              </DropdownMenuLabel>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() => signOut({ callbackUrl: "/" })}
